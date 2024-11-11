@@ -1,0 +1,24 @@
+const statusUrl = 'https://raw.githubusercontent.com/Robloxhacker3/Fluxus-bypass/refs/heads/main/Status.js';
+
+async function checkApiStatus() {
+    try {
+        const response = await fetch('API_URL'); // Replace with actual API URL to check status
+        if (response.ok) {
+            await fetch(statusUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'API is online' })
+            });
+        } else {
+            await fetch(statusUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'API is offline' })
+            });
+        }
+    } catch (error) {
+        console.error('Error checking API status:', error);
+    }
+}
+
+checkApiStatus();
